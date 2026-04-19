@@ -1,0 +1,244 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Section from "../components/Section.astro";
+
+const base = import.meta.env.BASE_URL;
+const u = (p: string) => `${base}${p.replace(/^\//, "")}`;
+
+const pipeline = [
+  {
+    step: "01",
+    title: "Background solar wind & connectivity",
+    code: "AWSoM-R + SA-MHD",
+    body: "Time-dependent corona + inner heliosphere driven by near-real-time GONG magnetograms, with Stream-Aligned MHD providing accurate sun-to-spacecraft magnetic connectivity.",
+  },
+  {
+    step: "02",
+    title: "CME initiation",
+    code: "EEG",
+    body: "EEG flux-rope insertion at the active region drives a self-consistent CME and shock.",
+  },
+  {
+    step: "03",
+    title: "Particle acceleration",
+    code: "M-FLAMPA / MITTENS",
+    body: "Diffusive shock acceleration along a population of Lagrangian magnetic field lines.",
+  },
+  {
+    step: "04",
+    title: "Interplanetary transport",
+    code: "Transport",
+    body: "Particles propagate through the structured heliosphere to any observer location.",
+  },
+];
+
+const products = [
+  {
+    title: "Time–intensity profiles",
+    body: "Full rise → peak → decay of SEP flux at any heliospheric vantage point.",
+  },
+  {
+    title: "Energy spectra",
+    body: "Spectrum from a few MeV up to >100 MeV — not just an integrated intensity.",
+  },
+  {
+    title: "Onset, peak, end timing",
+    body: "Quantitative prediction of when the event begins, peaks, and ends at the observer.",
+  },
+  {
+    title: "Multi-point simulation outputs",
+    body: "Simulated SEP flux at any longitude in the inner heliosphere — Earth, Moon, Mars, and deep-space spacecraft.",
+  },
+];
+
+const events = [
+  {
+    name: "Historical SEP events validation",
+    paper: "Zhao et al. 2024, Space Weather 22, e2023SW003729",
+    doi: "10.1029/2023SW003729",
+    body: "Application of SOFIE to multiple historical SEP events, demonstrating end-to-end forecasting capability across event types.",
+  },
+  {
+    name: "2013 April 11 SEP event",
+    paper: "Liu et al. 2025, ApJ 985, 82",
+    doi: "10.3847/1538-4357/adc4e3",
+    body: "Physics-based simulation reproducing the observed time-intensity profile and energy spectrum from a well-studied historical event.",
+  },
+  {
+    name: "2025 NOAA SWPC Testbed exercise",
+    paper: "Liu et al. 2025 (submitted), Space Weather",
+    arxiv: "2511.09716",
+    body: "Simulated real-time testing of the SOFIE prototype during the inaugural NOAA Space Weather Prediction Testbed (April 29 – May 8, 2025) — interagency exercise simulating radiation-storm scenarios for Artemis II.",
+  },
+];
+
+const components = [
+  { code: "AWSoM-R", role: "Real-time solar wind" },
+  { code: "SA-MHD", role: "Magnetic connectivity" },
+  { code: "EEG", role: "CME initiation" },
+  { code: "M-FLAMPA / MITTENS", role: "Particle acceleration & transport" },
+];
+---
+
+<BaseLayout
+  title="SOFIE — CLEAR Center"
+  description="SOFIE: Solar Wind with Field Lines and Energetic Particles — the CLEAR Center's physics-based, end-to-end SEP forecasting pipeline."
+>
+  <Section
+    eyebrow="Physics-based SEP simulation tool"
+    title="SOFIE — Solar Wind with Field Lines and Energetic Particles"
+    lede="SOFIE couples the real-time solar wind, CME initiation, shock-driven particle acceleration, and interplanetary transport into a single end-to-end simulation chain — producing forecasts of SEP flux, spectrum, and timing at any heliospheric vantage point."
+  >
+    <div class="flex flex-wrap gap-3">
+      <a class="btn-primary" href={u("tools")}>← Back to Forecasts</a>
+    </div>
+  </Section>
+
+  <!-- Pipeline -->
+  <section class="bg-slate-50 py-16 sm:py-20">
+    <div class="container-wide">
+      <p class="eyebrow">The Pipeline</p>
+      <h2 class="mt-2 text-3xl font-bold text-umblue-900 sm:text-4xl">
+        Sun-to-spacecraft, in four coupled stages
+      </h2>
+      <p class="mt-4 max-w-3xl text-lg text-slate-700">
+        Each stage feeds the next. The same simulation produces the background
+        solar wind, propagates the CME shock, accelerates particles, and tracks
+        them through the structured heliosphere to the observer.
+      </p>
+      <!-- Diagram: vertical on small/medium, horizontal on xl+ -->
+      <div class="mt-10 flex flex-col items-stretch gap-3 xl:flex-row xl:items-stretch">
+        {pipeline.map((p, i) => (
+          <Fragment>
+            <article class="relative flex-1 overflow-hidden rounded-xl border border-slate-200 bg-white p-5 shadow-sm">
+              <div class="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-maize-400 to-maize-500"></div>
+              <div class="flex items-center gap-2">
+                <span class="flex h-7 w-7 items-center justify-center rounded-full bg-maize-100 font-mono text-xs font-bold text-umblue-900">{p.step}</span>
+                <span class="font-mono text-[10px] font-semibold uppercase tracking-wider text-maize-600">Stage</span>
+              </div>
+              <h3 class="mt-3 text-base font-semibold leading-snug text-umblue-900">{p.title}</h3>
+              <p class="mt-1 font-mono text-xs uppercase tracking-wider text-slate-500">{p.code}</p>
+              <p class="mt-3 text-sm leading-relaxed text-slate-600">{p.body}</p>
+            </article>
+            {i < pipeline.length - 1 && (
+              <div class="flex shrink-0 items-center justify-center text-umblue-400" aria-hidden="true">
+                <!-- Down arrow on smaller screens -->
+                <svg class="h-6 w-6 xl:hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+                </svg>
+                <!-- Right arrow on xl+ -->
+                <svg class="hidden h-6 w-6 xl:block" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                </svg>
+              </div>
+            )}
+          </Fragment>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Components used -->
+  <Section eyebrow="Underlying components" title="Built on the CLEAR modeling stack">
+    <p class="max-w-3xl text-lg text-slate-700">
+      SOFIE integrates four physics-based modeling components developed at the
+      University of Michigan and delivered to the community:
+    </p>
+    <ul class="mt-8 grid gap-3 sm:grid-cols-2">
+      {components.map((c) => (
+        <li class="flex items-center justify-between gap-3 rounded-lg border border-slate-200 bg-white px-5 py-3">
+          <span class="font-mono text-base font-semibold text-umblue-900">{c.code}</span>
+          <span class="text-sm text-slate-500">{c.role}</span>
+        </li>
+      ))}
+    </ul>
+    <p class="mt-6 text-sm text-slate-600">
+      See <a class="font-semibold text-umblue-800 hover:text-umblue-700" href={u("science#architecture")}>Components of CLEAR</a> for full descriptions of each module.
+    </p>
+  </Section>
+
+  <!-- Forecast products -->
+  <section class="bg-slate-50 py-16 sm:py-20">
+    <div class="container-wide">
+      <p class="eyebrow">Forecast products</p>
+      <h2 class="mt-2 text-3xl font-bold text-umblue-900 sm:text-4xl">
+        What SOFIE produces
+      </h2>
+      <div class="mt-10 grid gap-5 md:grid-cols-2">
+        {products.map((p) => (
+          <article class="rounded-xl border border-slate-200 bg-white p-6">
+            <h3 class="text-base font-semibold text-umblue-900">{p.title}</h3>
+            <p class="mt-2 text-base leading-relaxed text-slate-600">{p.body}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Validation (dark anchor) -->
+  <section class="bg-umblue-900 py-16 text-white sm:py-20">
+    <div class="container-wide">
+      <div class="max-w-3xl">
+        <p class="eyebrow text-maize-400">Validation</p>
+        <h2 class="mt-2 text-3xl font-bold sm:text-4xl">
+          Tested against historical events and operational testbeds
+        </h2>
+        <p class="mt-6 text-lg text-slate-300">
+          SOFIE has been validated against historical SEP events and exercised in
+          NOAA SWPC's 2025 Artemis II Space Weather Prediction Testbed (April 29
+          – May 8, 2025), alongside other interagency forecasting tools.
+        </p>
+      </div>
+      <ul class="mt-10 grid gap-4 md:grid-cols-3">
+        {events.map((e) => (
+          <li class="rounded-xl bg-white/5 p-6 ring-1 ring-white/10 backdrop-blur">
+            <h3 class="text-base font-semibold text-maize-300">{e.name}</h3>
+            <p class="mt-2 text-base leading-relaxed text-slate-200">{e.body}</p>
+            <p class="mt-3 text-sm italic text-slate-300">{e.paper}</p>
+            {e.doi && (
+              <a
+                class="mt-2 inline-flex items-center gap-1 text-sm font-semibold text-maize-300 hover:text-maize-400"
+                href={`https://doi.org/${e.doi}`}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                DOI: {e.doi} →
+              </a>
+            )}
+            {e.arxiv && (
+              <a
+                class="mt-2 inline-flex items-center gap-1 text-sm font-semibold text-maize-300 hover:text-maize-400"
+                href={`https://arxiv.org/abs/${e.arxiv}`}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                arXiv: {e.arxiv} →
+              </a>
+            )}
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <!-- Status -->
+  <Section eyebrow="Status" title="From research prototype to operational forecast">
+    <div class="space-y-5 text-slate-700">
+      <p class="text-lg leading-relaxed">
+        SOFIE is currently a research-grade prototype that has been exercised in
+        operational testbeds. The CLEAR team is preparing a real-time
+        operational version for delivery through the
+        <a class="font-semibold text-umblue-800 hover:text-umblue-700" href="https://ccmc.gsfc.nasa.gov/" target="_blank" rel="noopener noreferrer">Community Coordinated Modeling Center (CCMC)</a>.
+      </p>
+      <p class="text-lg leading-relaxed">
+        During Artemis II, SOFIE prototype runs support NASA situational
+        awareness for solar radiation events alongside other CLEAR forecasting
+        tools.
+      </p>
+    </div>
+    <div class="mt-8 flex flex-wrap gap-3">
+      <a class="btn-primary" href={u("tools")}>All forecasts</a>
+      <a class="btn-primary" href={u("publications")}>Related publications</a>
+    </div>
+  </Section>
+</BaseLayout>

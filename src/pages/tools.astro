@@ -6,8 +6,12 @@ type Tool = {
   name: string;
   body: string;
   status?: "Available" | "Coming Soon";
-  url?: string;
+  url?: string;       // external "Launch tool" URL
+  learnMore?: string; // internal "Learn more" page (relative path, e.g. "sofie")
 };
+
+const base = import.meta.env.BASE_URL;
+const u = (p: string) => `${base}${p.replace(/^\//, "")}`;
 
 type Group = {
   id: string;
@@ -65,8 +69,9 @@ const groups: Group[] = [
     tools: [
       {
         name: "SOFIE",
-        body: "Physics-based SEP forecasting tool integrating the CLEAR Center's full modeling pipeline — from CME initiation through shock-driven particle acceleration and interplanetary transport.",
+        body: "Physics-based SEP simulation tool integrating a full modeling pipeline — from CME initiation through shock-driven particle acceleration and interplanetary transport.",
         status: "Coming Soon",
+        learnMore: "sofie",
       },
       {
         name: "Daily Solar Wind",
@@ -179,6 +184,14 @@ const gaps = [
                       rel="noopener noreferrer"
                     >
                       Launch tool →
+                    </a>
+                  )}
+                  {t.learnMore && !t.url && (
+                    <a
+                      class="mt-5 inline-flex w-fit items-center gap-2 rounded-md border border-umblue-800 px-4 py-2 text-sm font-semibold text-umblue-800 hover:bg-umblue-50"
+                      href={u(t.learnMore)}
+                    >
+                      Learn more →
                     </a>
                   )}
                 </article>
