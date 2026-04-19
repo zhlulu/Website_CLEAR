@@ -1,0 +1,261 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Section from "../components/Section.astro";
+
+const objectives = [
+  "A modular SEP forecast framework integrating observational data, physics-based models, empirical methods, and machine learning.",
+  "A benchmark SEP dataset with standard evaluation metrics for community validation and reuse.",
+  "Prediction capabilities addressing all five SEP forecasting gap areas identified in NASA's Space Weather Gap Analysis — pre-eruption probabilities, onset/peak timing, intensity profiles, spectra, and all-clear periods.",
+];
+
+const visionBullets = [
+  "Probabilistic forecasts of solar eruptive events before they occur.",
+  "Nowcasts and forecasts of SEP event properties — onset, intensity, spectra, and timing.",
+  "All-clear forecasts identifying periods with SEP intensities below critical thresholds.",
+];
+
+const frameworkLayers = [
+  {
+    title: "Physics-based models",
+    body: "AWSoM-R for solar wind, EEGGL for CME initiation, and M-FLAMPA / MITTENS for particle acceleration and transport.",
+  },
+  {
+    title: "Machine learning",
+    body: "Trained on decades of SEP, CME, and flare observations to extend forecasts into the pre-eruption phase.",
+  },
+  {
+    title: "Empirical models",
+    body: "SEPSTER and RELeASE, calibrated and enhanced with real-time solar data.",
+  },
+];
+
+const impacts = [
+  "Supports situational awareness for NASA's Artemis missions and future deep-space exploration.",
+  "Extends to human exploration of Mars, where long mission durations and limited shielding increase radiation risk.",
+  "Informs operational readiness for aviation and satellite operators facing solar radiation hazards.",
+  "Enables probabilistic all-clear forecasts to support planning for astronaut EVAs and launch windows.",
+];
+
+---
+
+<BaseLayout>
+  <!-- Hero -->
+  <section class="relative overflow-hidden bg-umblue-900 text-white">
+    {/*
+      Option 1 — Institutional / academic (working option — uncomment to restore):
+      <img src="/corona-mass.jpg" alt="" class="absolute inset-0 h-full w-full object-cover opacity-80" loading="eager" />
+      <div class="absolute inset-0 bg-gradient-to-r from-umblue-900/90 via-umblue-900/65 to-umblue-900/20"></div>
+    */}
+
+    {/*
+      Option 2 — Mission / NASA-facing (working option — uncomment to restore):
+      <img src="/corona-mass.jpg" alt="" class="absolute inset-0 h-full w-full object-cover opacity-70" loading="eager" />
+      <div class="absolute inset-0 bg-gradient-to-r from-umblue-900/90 via-umblue-900/60 to-umblue-900/20"></div>
+      <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,theme(colors.maize.500/0.22),transparent_60%)]"></div>
+    */}
+
+    {/* Option 3 — Operational / cinematic: darker neutral slate, Sun shows through more */}
+    <img
+      src="/corona-mass.jpg"
+      alt=""
+      class="absolute inset-0 h-full w-full object-cover opacity-70"
+      loading="eager"
+    />
+    <div class="absolute inset-0 bg-gradient-to-r from-slate-900/90 via-slate-900/60 to-slate-900/20"></div>
+    <div class="container-wide relative z-10 py-24 sm:py-32">
+      <p class="eyebrow text-maize-400">NASA Space Weather Center of Excellence</p>
+      <h1 class="mt-4 max-w-4xl text-4xl font-bold leading-tight sm:text-6xl">
+        CLEAR
+      </h1>
+      <p class="mt-3 text-lg font-medium text-maize-300 sm:text-2xl">
+        Center for All-Clear SEP Forecast
+      </p>
+
+      <!-- Punchy headline -->
+      <p class="mt-8 max-w-3xl text-xl font-semibold leading-snug text-white sm:text-2xl">
+        Operational forecasting of solar energetic particles for human space explorations — with up to 24-hour lead time.
+      </p>
+
+      <!-- Operational credibility -->
+      <p class="mt-4 max-w-3xl text-sm text-slate-300">
+        Prototype capabilities have been exercised in NOAA SWPC testbeds and support NASA situational awareness during Artemis II.
+      </p>
+
+      <div class="mt-8 flex flex-wrap gap-3">
+        <a class="btn-maize" href="/tools">See the forecasts</a>
+        <a class="btn-secondary" href="/science">Explore the science</a>
+      </div>
+      <p class="mt-8 text-sm text-slate-300">
+        Learn more on the NASA space weather program website:
+        <a
+          class="font-medium text-maize-300 underline decoration-maize-500/60 underline-offset-4 hover:text-maize-400"
+          href="https://science.nasa.gov/clear/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          science.nasa.gov/clear
+        </a>
+      </p>
+    </div>
+  </section>
+
+  <!-- Integration pillars -->
+  <section class="border-b border-slate-200 bg-slate-50">
+    <div class="container-wide py-8 sm:py-10">
+      <div class="grid gap-6 sm:grid-cols-3">
+        <div class="flex items-start gap-3">
+          <span class="mt-0.5 inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-md bg-maize-100 text-umblue-900">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.75" stroke="currentColor" class="h-5 w-5" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" />
+            </svg>
+          </span>
+          <div>
+            <h3 class="text-base font-semibold text-umblue-900">Physics-Based Models</h3>
+            <p class="mt-0.5 text-sm leading-relaxed text-slate-600">Global MHD solar-wind and particle-transport simulations from the corona through the heliosphere.</p>
+          </div>
+        </div>
+
+        <div class="flex items-start gap-3">
+          <span class="mt-0.5 inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-md bg-umblue-100 text-umblue-900">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.75" stroke="currentColor" class="h-5 w-5" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 8.25h7.5v7.5h-7.5V8.25zM9 3.75H6.375c-.621 0-1.125.504-1.125 1.125v13.5c0 .621.504 1.125 1.125 1.125H9m4.5-15.75V21m0-17.25h2.625c.621 0 1.125.504 1.125 1.125v13.5c0 .621-.504 1.125-1.125 1.125H13.5M3 8.25h2.25M3 12h2.25M3 15.75h2.25M18.75 8.25H21M18.75 12H21M18.75 15.75H21" />
+            </svg>
+          </span>
+          <div>
+            <h3 class="text-base font-semibold text-umblue-900">Machine Learning</h3>
+            <p class="mt-0.5 text-sm leading-relaxed text-slate-600">Pre-eruption probabilistic forecasts trained on decades of flare, CME, and SEP observations.</p>
+          </div>
+        </div>
+
+        <div class="flex items-start gap-3">
+          <span class="mt-0.5 inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-md bg-umblue-800 text-maize-300">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.75" stroke="currentColor" class="h-5 w-5" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9.348 14.651a3.75 3.75 0 010-5.303m5.304 0a3.75 3.75 0 010 5.303m-7.425 2.122a6.75 6.75 0 010-9.546m9.546 0a6.75 6.75 0 010 9.546M12 12h.008v.008H12V12zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
+            </svg>
+          </span>
+          <div>
+            <h3 class="text-base font-semibold text-umblue-900">Real-Time Observations</h3>
+            <p class="mt-0.5 text-sm leading-relaxed text-slate-600">Near-real-time magnetograms, coronagraphs, and in-situ particle measurements.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Vision -->
+  <Section eyebrow="Vision" title="Quantifiable SEP forecasts with up to 24-hour lead time">
+    <div class="grid gap-10 lg:grid-cols-3">
+      <div class="lg:col-span-1">
+        <p class="text-lg text-slate-700">
+          CLEAR delivers quantifiable SEP nowcasts and forecasts of space
+          radiation intensities up to 24 hours in advance. The system provides:
+        </p>
+      </div>
+      <ol class="divide-y divide-slate-200 lg:col-span-2">
+        {visionBullets.map((b, i) => (
+          <li class="flex items-start gap-6 py-5 first:pt-0 last:pb-0">
+            <span class="font-mono text-2xl font-semibold leading-none text-maize-600">0{i + 1}</span>
+            <p class="text-sm leading-relaxed text-slate-600">{b}</p>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </Section>
+
+  <!-- Motivation -->
+  <section class="bg-slate-50 py-16 sm:py-24">
+    <div class="container-wide grid items-start gap-12 lg:grid-cols-12">
+      <div class="lg:col-span-5">
+        <p class="eyebrow">Motivation</p>
+        <h2 class="mt-2 text-3xl font-bold leading-tight text-umblue-900 sm:text-4xl">
+          SEPs are the primary radiation hazard for human spaceflight beyond low Earth orbit.
+        </h2>
+      </div>
+      <div class="space-y-5 border-l-2 border-maize-500 pl-6 text-slate-700 lg:col-span-7">
+        <p class="text-base leading-relaxed">
+          Solar energetic particles accelerated in solar eruptions arrive at
+          Earth within minutes — at energies that matter most for crew safety.
+          Protons above <strong class="text-umblue-900">100&nbsp;MeV</strong> penetrate spacecraft
+          shielding and drive astronaut dose; protons above
+          <strong class="text-umblue-900">500&nbsp;MeV</strong> penetrate Earth's atmosphere and
+          threaten aviation.
+        </p>
+        <p class="text-base leading-relaxed">
+          For Artemis and future deep-space missions, timely, quantifiable SEP
+          forecasts are a prerequisite for safe operations — not an enhancement.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Objectives -->
+  <Section eyebrow="Objectives" title="What CLEAR delivers">
+    <div class="grid gap-y-10 divide-slate-200 md:grid-cols-3 md:gap-y-0 md:divide-x">
+      {objectives.map((o, i) => (
+        <div class="px-0 md:px-8 md:first:pl-0 md:last:pr-0">
+          <div class="font-mono text-2xl font-semibold leading-none text-maize-600">
+            {String(i + 1).padStart(2, "0")}
+          </div>
+          <p class="mt-4 text-sm leading-relaxed text-slate-600">{o}</p>
+        </div>
+      ))}
+    </div>
+  </Section>
+
+  <!-- Integrated framework -->
+  <section class="bg-umblue-50 py-16 sm:py-24">
+    <div class="container-wide">
+      <div class="max-w-3xl">
+        <p class="eyebrow">Integrated Multi-Model Framework</p>
+        <h2 class="mt-2 text-3xl font-bold text-umblue-900 sm:text-4xl">
+          A modular, plug-and-play SEP forecast system.
+        </h2>
+        <p class="mt-4 text-lg text-slate-700">
+          CLEAR unites three modeling paradigms so their strengths compensate
+          for one another's limitations — delivering forecasts with
+          quantifiable uncertainty and up to 24-hour lead time, far exceeding
+          current capabilities.
+        </p>
+      </div>
+      <div class="mt-12 grid gap-6 md:grid-cols-3">
+        {frameworkLayers.map((l) => (
+          <div class="rounded-xl border border-umblue-100 bg-white p-7 shadow-sm">
+            <div class="mb-4 h-1 w-10 rounded-full bg-maize-500"></div>
+            <h3 class="text-base font-semibold text-umblue-900">{l.title}</h3>
+            <p class="mt-3 text-sm leading-relaxed text-slate-600">{l.body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Impact on space exploration -->
+  <section class="bg-gradient-to-br from-umblue-900 via-umblue-800 to-umblue-700 py-16 text-white sm:py-20">
+    <div class="container-wide grid gap-10 lg:grid-cols-12">
+      <div class="lg:col-span-5">
+        <p class="eyebrow text-maize-400">Impact of CLEAR on Space Exploration</p>
+        <h2 class="mt-2 text-3xl font-bold sm:text-4xl">Supporting crewed missions and critical infrastructure.</h2>
+      </div>
+      <ul class="space-y-4 lg:col-span-7">
+        {impacts.map((item) => (
+          <li class="flex gap-4 border-l-2 border-maize-500 pl-5">
+            <p class="text-base leading-relaxed text-slate-200">{item}</p>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <!-- Relevance and Impacts -->
+  <Section eyebrow="Relevance and Impacts" title="Building the next generation of space-weather scientists">
+    <p class="text-lg text-slate-700">
+      CLEAR fosters a multi-, inter- and trans-disciplinary environment,
+      supporting students, postdocs, and early-career scientists. Outreach
+      includes workshops, seminars, and public communication.
+    </p>
+    <div class="mt-8 flex flex-wrap gap-3">
+      <a class="btn-primary" href="/team">Meet the team</a>
+      <a class="btn-primary" href="/contact">Contact the center</a>
+    </div>
+  </Section>
+</BaseLayout>

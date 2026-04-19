@@ -1,0 +1,65 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Section from "../components/Section.astro";
+
+const tools = [
+  {
+    name: "Community Coordinated Modeling Center (CCMC)",
+    href: "https://ccmc.gsfc.nasa.gov/",
+    body: "CLEAR's foundational modules (SWMF, AWSoM, EEGGL, M-FLAMPA) are delivered to CCMC for community access.",
+  },
+  {
+    name: "Space Weather Modeling Framework",
+    href: "https://swmf.engin.umich.edu/",
+    body: "The modeling framework CLEAR builds on, developed at the University of Michigan.",
+  },
+  {
+    name: "NOAA Space Weather Prediction Center",
+    href: "https://www.swpc.noaa.gov/",
+    body: "Operational space-weather forecasts and alerts. The SWMF Geospace configuration is in operational use here.",
+  },
+  {
+    name: "GONG magnetograms",
+    href: "https://gong.nso.edu/data/magmap/",
+    body: "Near-continuous photospheric magnetic-field measurements from the National Solar Observatory's GONG network.",
+  },
+];
+
+const audiences = [
+  { t: "For scientists", b: "Benchmark SEP dataset, model validation results, APIs and source code as they are released." },
+  { t: "For operators & agencies", b: "Forecast products feeding operational decision-making for launches, EVAs and satellite operations." },
+  { t: "For educators & public", b: "Workshops, seminars, and YouTube videos explaining space weather and heliophysics." },
+];
+---
+
+<BaseLayout title="Resources — CLEAR Center" description="Data, tools and outreach from the CLEAR Center.">
+  <Section
+    eyebrow="Resources"
+    title="Tools, datasets and community links"
+    lede="CLEAR engages directly with the space-weather community — integrating research-to-operations (R2O) and operations-to-research (O2R) activities."
+  >
+    <div class="grid gap-6 md:grid-cols-2">
+      {tools.map((t) => (
+        <a href={t.href} target="_blank" rel="noopener noreferrer" class="group rounded-xl border border-slate-200 bg-white p-6 transition hover:border-maize-500 hover:shadow-sm">
+          <h3 class="text-base font-semibold text-umblue-900 group-hover:text-umblue-700">{t.name} →</h3>
+          <p class="mt-2 text-sm text-slate-600">{t.body}</p>
+        </a>
+      ))}
+    </div>
+  </Section>
+
+  <section class="bg-slate-50 py-16 sm:py-20">
+    <div class="container-wide">
+      <p class="eyebrow">Audiences</p>
+      <h2 class="mt-2 max-w-3xl text-3xl font-bold text-umblue-900 sm:text-4xl">Who CLEAR serves</h2>
+      <div class="mt-10 grid gap-6 md:grid-cols-3">
+        {audiences.map((a) => (
+          <div class="rounded-xl border border-slate-200 bg-white p-6">
+            <h3 class="text-lg font-semibold text-umblue-800">{a.t}</h3>
+            <p class="mt-2 text-sm text-slate-600">{a.b}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,319 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Section from "../components/Section.astro";
+
+type Person = {
+  name: string;
+  title?: string;
+  role?: string;
+  affiliation?: string;
+  img: string;
+  url?: string;
+};
+
+const executive: Person[] = [
+  {
+    name: "Lulu Zhao",
+    role: "Principal Investigator · Executive Team",
+    affiliation: "University of Michigan",
+    img: "/team/lulu-zhao.png",
+    url: "https://clasp.engin.umich.edu/people/zhao-lulu/",
+  },
+  {
+    name: "Tamas Gombosi",
+    role: "Project Manager · Executive Team",
+    affiliation: "University of Michigan",
+    img: "/team/tamas-gombosi.jpg",
+    url: "https://clasp.engin.umich.edu/people/gombosi-tamas-i/",
+  },
+  {
+    name: "Charles Nickolos Arge",
+    role: "Executive Team",
+    affiliation: "NASA Goddard Space Flight Center",
+    img: "/team/charles-arge.jpg",
+    url: "https://science.gsfc.nasa.gov/sci/bio/charles.n.arge",
+  },
+];
+
+const advisoryBoard: Person[] = [
+  {
+    name: "Spiro Antiochos",
+    title: "Prof.",
+    affiliation: "NASA Goddard Space Flight Center / University of Michigan",
+    img: "/team/spiro-antiochos.jpg",
+    url: "https://science.gsfc.nasa.gov/sci/bio/spiro.antiochos",
+  },
+  {
+    name: "William Murtagh",
+    affiliation: "",
+    img: "/team/william-murtagh.png",
+  },
+  {
+    name: "Angelos Vourlidas",
+    affiliation: "Applied Physics Laboratory — Johns Hopkins University",
+    img: "/team/angelos-vourlidas.jpg",
+    url: "https://www.jhuapl.edu/about/people/angelos-vourlidas",
+  },
+];
+
+type OperationalGroup = { label: string; people: Person[] };
+
+const operationalGroups: OperationalGroup[] = [
+  {
+    label: "Technology Transition Advisors",
+    people: [
+      {
+        name: "Kathryn Whitman",
+        role: "CLEAR Technology Transition Advisor",
+        affiliation: "NASA Space Radiation Analysis Group",
+        img: "/team/kathryn-whitman.jpg",
+      },
+      {
+        name: "Eric Adamson",
+        role: "CLEAR Technology Transition Advisor",
+        affiliation: "NOAA Space Weather Prediction Center",
+        img: "/team/eric-adamson.png",
+      },
+      {
+        name: "Stephen White",
+        role: "CLEAR Technology Transition Advisor",
+        affiliation: "Air Force Research Laboratory (AFRL)",
+        img: "/team/placeholder.jpg",
+      },
+    ],
+  },
+  {
+    label: "NASA Community Coordinated Modeling Center (CCMC)",
+    people: [
+      {
+        name: "Leila Mays",
+        affiliation: "NASA Goddard / CCMC",
+        img: "/team/leila-mays.jpg",
+        url: "https://science.gsfc.nasa.gov/sci/bio/m.leila.mays",
+      },
+      {
+        name: "Martin Reiss",
+        affiliation: "NASA CCMC",
+        img: "/team/Martin-Reiss.webp",
+      },
+      {
+        name: "Claudio Corti",
+        affiliation: "NASA CCMC",
+        img: "/team/claudio-corti.png",
+      },
+    ],
+  },
+  {
+    label: "NASA Moon-to-Mars Space Weather Analysis Office (M2M SWAO)",
+    people: [
+      {
+        name: "Teresa Nieves-Chinchilla",
+        affiliation: "NASA Goddard",
+        img: "/team/teresa-nieves-chinchilla.jpeg",
+        url: "https://science.gsfc.nasa.gov/sci/bio/teresa.nieves-chinchil-1/",
+      },
+      {
+        name: "Michelangelo Romano",
+        affiliation: "NASA Goddard",
+        img: "/team/michelangelo-romano.jpeg",
+        url: "https://science.gsfc.nasa.gov/heliophysics/bio/michelangelo.romano",
+      },
+      {
+        name: "Mary Aronne",
+        affiliation: "NASA Goddard",
+        img: "/team/mary-aronne.jpg",
+        url: "https://science.gsfc.nasa.gov/heliophysics/bio/mary.aronne",
+      },
+      {
+        name: "Elizabeth Juelfs",
+        affiliation: "NASA Goddard",
+        img: "/team/elizabeth-juelfs.jpg",
+        url: "https://science.gsfc.nasa.gov/heliophysics/bio/elizabeth.juelfs",
+      },
+    ],
+  },
+  {
+    label: "NOAA Space Weather Prediction Center (SWPC)",
+    people: [
+      {
+        name: "Hazel Bain",
+        affiliation: "CIRES / NOAA SWPC",
+        img: "/team/hazel-bain.webp",
+        url: "https://cires.colorado.edu/people/hazel-bain",
+      },
+    ],
+  },
+];
+
+type MemberGroup = { label: string; people: Person[] };
+
+const memberGroups: MemberGroup[] = [
+  {
+    label: "Physics Model Developers",
+    people: [
+      { name: "Igor Sokolov", affiliation: "University of Michigan, CLaSP", img: "/team/igor-sokolov.jpeg", url: "https://clasp.engin.umich.edu/people/sokolov-igor/" },
+      { name: "Nishtha Sachdeva", affiliation: "University of Michigan, CLaSP", img: "/team/nishtha-sachdeva.jpeg", url: "https://clasp.engin.umich.edu/people/sachdeva-nishtha/" },
+      { name: "Ward Manchester", affiliation: "University of Michigan, CLaSP", img: "/team/ward-manchester.jpeg", url: "https://clasp.engin.umich.edu/people/manchester-ward-b/" },
+      { name: "Alexander Shane", affiliation: "University of Michigan, CLaSP", img: "/team/alexander-shane.jpeg", url: "https://clasp.engin.umich.edu/people/alexander-shane/" },
+      { name: "Gabor Toth", affiliation: "University of Michigan, CLaSP", img: "/team/gabor-toth.jpeg", url: "https://clasp.engin.umich.edu/people/toth-gabor/" },
+      { name: "Bart van der Holst", affiliation: "University of Michigan, CLaSP", img: "/team/bart-van-der-holst.jpg" },
+      { name: "Meng Jin", affiliation: "Lockheed Martin", img: "/team/meng-jin.jpg" },
+      { name: "Yuri Omelchenko", affiliation: "Space Science Institute", img: "/team/yuri-omelchenko.jpg", url: "https://www.spacescience.org/bio.php?emp=YOMELCHENKO" },
+      { name: "Joe Giacalone", affiliation: "University of Arizona", img: "/team/joe-giacalone.jpg", url: "https://www.lpl.arizona.edu/faculty/joe-giacalone" },
+      { name: "Weihao Liu", role: "Graduate Student", affiliation: "University of Michigan, CLaSP", img: "/team/weihao-liu.png", url: "https://clasp.engin.umich.edu/people/liu-weihao/" },
+      { name: "Xianyu Liu", role: "Graduate Student", affiliation: "University of Michigan, CLaSP", img: "/team/xianyu-liu.jpg", url: "https://clasp.engin.umich.edu/people/liu-xianyu/" },
+      { name: "Gergely Koban", role: "Graduate Student", affiliation: "University of Michigan, CLaSP", img: "/team/gergely-koban.jpg", url: "https://clasp.engin.umich.edu/people/koban-gergely/" },
+      { name: "Nikolett Biro", role: "Graduate Student", affiliation: "University of Michigan, CLaSP", img: "/team/nikolett-biro.jpg", url: "https://clasp.engin.umich.edu/people/biro-nikolett/" },
+      { name: "Keheng Zhu", role: "Graduate Student", affiliation: "University of Michigan, CLaSP", img: "/team/keheng-zhu.jpg", url: "https://clasp.engin.umich.edu/people/zhu-keheng/" },
+    ],
+  },
+  {
+    label: "AI / ML Experts",
+    people: [
+      { name: "Yang Chen", affiliation: "University of Michigan, Statistics", img: "/team/yang-chen.jpg", url: "https://lsa.umich.edu/stats/people/faculty/YangChen.html" },
+      { name: "Yian Yu", affiliation: "University of Michigan, Statistics", img: "/team/yian-yu.jpg", url: "https://lsa.umich.edu/stats/people/postdoctoral-fellows/yianyu.html" },
+      { name: "Kevin Jin", role: "Graduate Student", affiliation: "University of Michigan, Statistics", img: "/team/kevin-jin.jpg", url: "https://lsa.umich.edu/stats/people/phd-students/kejin.html" },
+      { name: "Victor Verma", role: "Graduate Student", affiliation: "University of Michigan, Statistics", img: "/team/victor-verma.jpg", url: "https://lsa.umich.edu/stats/people/phd-students/vkverma.html" },
+    ],
+  },
+  {
+    label: "Experimentalists",
+    people: [
+      { name: "Christina Cohen", affiliation: "Caltech", img: "/team/christina-cohen.png", url: "https://sites.srl.caltech.edu/~cohen/" },
+      { name: "Ian Richardson", affiliation: "University of Maryland", img: "/team/ian-richardson.jpg", url: "https://www.astro.umd.edu/people/irichardson.html" },
+      { name: "David Lario", affiliation: "NASA Goddard Space Flight Center", img: "/team/david-lario.jpeg", url: "https://science.gsfc.nasa.gov/earth/bio/david.larioloyo" },
+      { name: "Alessandro Bruno", affiliation: "Catholic University of America / NASA Goddard", img: "/team/alessandro-bruno.png", url: "https://science.gsfc.nasa.gov/sci/bio/alessandro.bruno-1" },
+      { name: "Arik Posner", affiliation: "NASA Headquarters", img: "/team/arik-posner.jpg", url: "https://science.nasa.gov/people/dr-arik-posner/" },
+    ],
+  },
+];
+
+---
+
+<BaseLayout title="The Team — CLEAR Center" description="The CLEAR Center team: executive committee, advisory board, operational collaborators, members, and graduate students.">
+  <Section
+    eyebrow="The Team"
+    title="A multi-institution team built for an interdisciplinary problem"
+    lede="CLEAR unites theoreticians, observers, computational model developers, statisticians, and machine-learning experts across universities, NASA centers, and operational users."
+  />
+
+  <!-- Executive Committee -->
+  <section class="pb-10">
+    <div class="container-wide">
+      <h2 class="text-2xl font-bold text-umblue-900 sm:text-3xl">Executive Committee</h2>
+      <div class="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {executive.map((p) => (
+          <article class="flex gap-5 rounded-xl border border-slate-200 bg-white p-5">
+            <img src={p.img} alt={p.name} class="h-24 w-24 shrink-0 rounded-full object-cover ring-2 ring-maize-500/40 bg-slate-300" loading="lazy" />
+            <div>
+              <h3 class="text-base font-semibold text-umblue-900">
+                {p.title ? `${p.title} ` : ""}{p.name}
+              </h3>
+              {p.role && <p class="text-xs font-medium text-umblue-800">{p.role}</p>}
+              {p.affiliation && <p class="mt-1 text-sm text-slate-500">{p.affiliation}</p>}
+              {p.url && (
+                <a class="mt-2 inline-block text-sm font-semibold text-umblue-800 hover:text-umblue-700" href={p.url} target="_blank" rel="noopener noreferrer">
+                  Website →
+                </a>
+              )}
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Team Members -->
+  <section class="bg-slate-50 py-16 sm:py-20">
+    <div class="container-wide">
+      <h2 class="text-2xl font-bold text-umblue-900 sm:text-3xl">Team Members</h2>
+
+      <div class="mt-10 space-y-12">
+        {memberGroups.map((g) => (
+          <div>
+            <h3 class="border-l-4 border-maize-500 pl-3 text-sm font-semibold uppercase tracking-wider text-umblue-800">
+              {g.label}
+            </h3>
+            <div class="mt-5 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+              {g.people.map((p) => (
+                <article class="flex gap-5 rounded-xl border border-slate-200 bg-white p-5">
+                  <img src={p.img} alt={p.name} class="h-24 w-24 shrink-0 rounded-full object-cover" loading="lazy" />
+                  <div>
+                    <h4 class="text-base font-semibold text-umblue-900">{p.name}</h4>
+                    {p.role && <p class="text-xs font-medium text-umblue-800">{p.role}</p>}
+                    {p.affiliation && <p class="mt-1 text-sm text-slate-500">{p.affiliation}</p>}
+                    {p.url && (
+                      <a class="mt-2 inline-block text-sm font-semibold text-umblue-800 hover:text-umblue-700" href={p.url} target="_blank" rel="noopener noreferrer">
+                        Website →
+                      </a>
+                    )}
+                  </div>
+                </article>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- External Advisory Board -->
+  <section class="bg-slate-50 py-16 sm:py-20">
+    <div class="container-wide">
+      <h2 class="text-2xl font-bold text-umblue-900 sm:text-3xl">External Advisory Board</h2>
+      <div class="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {advisoryBoard.map((p) => (
+          <article class="flex gap-5 rounded-xl border border-slate-200 bg-white p-5">
+            <img src={p.img} alt={p.name} class="h-24 w-24 shrink-0 rounded-full object-cover" loading="lazy" />
+            <div>
+              <h3 class="text-base font-semibold text-umblue-900">
+                {p.title ? `${p.title} ` : ""}{p.name}
+              </h3>
+              {p.affiliation && <p class="mt-1 text-sm text-slate-500">{p.affiliation}</p>}
+              {p.url && (
+                <a class="mt-2 inline-block text-sm font-semibold text-umblue-800 hover:text-umblue-700" href={p.url} target="_blank" rel="noopener noreferrer">
+                  Website →
+                </a>
+              )}
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Operational Collaborators -->
+  <section class="py-16 sm:py-20">
+    <div class="container-wide">
+      <h2 class="text-2xl font-bold text-umblue-900 sm:text-3xl">Operational Collaborators</h2>
+
+      <div class="mt-10 space-y-12">
+        {operationalGroups.map((g) => (
+          <div>
+            <h3 class="border-l-4 border-maize-500 pl-3 text-sm font-semibold uppercase tracking-wider text-umblue-800">
+              {g.label}
+            </h3>
+            <div class="mt-5 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+              {g.people.map((p) => (
+                <article class="flex gap-5 rounded-xl border border-slate-200 bg-white p-5">
+                  <img src={p.img} alt={p.name} class="h-24 w-24 shrink-0 rounded-full object-cover" loading="lazy" />
+                  <div>
+                    <h4 class="text-base font-semibold text-umblue-900">{p.name}</h4>
+                    {p.role && <p class="text-xs font-medium text-umblue-800">{p.role}</p>}
+                    {p.affiliation && <p class="mt-1 text-sm text-slate-500">{p.affiliation}</p>}
+                    {p.url && (
+                      <a class="mt-2 inline-block text-sm font-semibold text-umblue-800 hover:text-umblue-700" href={p.url} target="_blank" rel="noopener noreferrer">
+                        Website →
+                      </a>
+                    )}
+                  </div>
+                </article>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>

@@ -1,0 +1,48 @@
+---
+const year = new Date().getFullYear();
+---
+
+<footer class="mt-24 border-t border-slate-200 bg-slate-50">
+  <div class="container-wide py-12">
+    <div class="grid gap-10 md:grid-cols-4">
+      <div class="md:col-span-2">
+        <div class="flex items-center gap-3">
+          <img src="/clear.png" alt="" class="h-9 w-auto" />
+          <div>
+            <div class="text-sm font-bold text-umblue-900">CLEAR</div>
+            <div class="text-xs text-slate-500">Center for All-Clear SEP Forecast</div>
+          </div>
+        </div>
+        <p class="mt-4 max-w-md text-sm text-slate-600">
+          A NASA Space Weather Center of Excellence led by the University of Michigan,
+          building a comprehensive prediction framework for solar energetic particles.
+        </p>
+      </div>
+
+      <div>
+        <h4 class="text-xs font-semibold uppercase tracking-wider text-slate-500">Explore</h4>
+        <ul class="mt-3 space-y-2 text-sm text-slate-700">
+          <li><a href="/science" class="hover:text-umblue-800">Science</a></li>
+          <li><a href="/tools" class="hover:text-umblue-800">Forecasts</a></li>
+          <li><a href="/team" class="hover:text-umblue-800">Team</a></li>
+          <li><a href="/publications" class="hover:text-umblue-800">Publications</a></li>
+          <li><a href="/resources" class="hover:text-umblue-800">Resources</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="text-xs font-semibold uppercase tracking-wider text-slate-500">Hosted at</h4>
+        <ul class="mt-3 space-y-2 text-sm text-slate-700">
+          <li>Department of Climate and Space Sciences and Engineering</li>
+          <li>University of Michigan, Ann Arbor</li>
+          <li><a class="hover:text-umblue-800" href="/contact">Contact the Center</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="mt-10 flex flex-col items-start justify-between gap-3 border-t border-slate-200 pt-6 text-xs text-slate-500 md:flex-row md:items-center">
+      <p>© {year} The Regents of the University of Michigan. All rights reserved.</p>
+      <p>Supported by NASA Space Weather Centers of Excellence (SWxC) program.</p>
+    </div>
+  </div>
+</footer>

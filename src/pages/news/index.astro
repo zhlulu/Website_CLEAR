@@ -1,0 +1,100 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Section from "../../components/Section.astro";
+
+type NewsItem = {
+  date: string;           // ISO date
+  title: string;
+  source: string;         // publication name
+  summary?: string;
+  url: string;            // external link
+};
+
+const items: NewsItem[] = [
+  {
+    date: "2026-04-01",
+    title: "Providing the Artemis mission with solar radiation forecasts",
+    source: "Michigan Engineering News",
+    summary: "NASA is testing a pair of new CLEAR solar-radiation forecasts during Artemis II — the first operational use of the Center's tools for a crewed lunar mission.",
+    url: "https://news.engin.umich.edu/2026/04/providing-the-artemis-mission-with-solar-radiation-forecasts/",
+  },
+  {
+    date: "2026-04-01",
+    title: "NASA is testing an AI model to protect Artemis II astronauts from solar radiation",
+    source: "Earth.com",
+    url: "https://www.earth.com/news/nasa-is-testing-an-ai-model-to-protect-artemis-ii-astronauts-from-solar-radiation/",
+  },
+  {
+    date: "2026-04-03",
+    title: "U-M is providing Artemis II mission with solar radiation forecasts",
+    source: "WWJ NewsRadio · On-Demand podcast",
+    summary: "Audio interview with PI Lulu Zhao on CLEAR's operational SEP forecasts during Artemis II.",
+    url: "https://www.audacy.com/wwjnewsradio/podcasts/2bf80c69d113972cd013b1751f2bca52/episodes/um_is_providing_artemis_2_mission_with_solar_radiation_forecasts",
+  },
+  {
+    date: "2025-07-03",
+    title: "Artemis II Space Weather Exercise prepares U.S. for human space exploration",
+    source: "NOAA NESDIS",
+    summary: "CLEAR participated in NOAA SWPC's inaugural Space Weather Prediction Testbed (April 29–May 8, 2025), a multi-agency exercise simulating radiation-storm scenarios to evaluate operational readiness for Artemis II.",
+    url: "https://www.nesdis.noaa.gov/news/artemis-ii-space-weather-exercise-prepares-us-human-space-exploration",
+  },
+  {
+    date: "2023-08-16",
+    title: "CLEAR Center launched at U-M Climate & Space to improve space-weather forecasting",
+    source: "UM Climate and Space Sciences and Engineering",
+    url: "https://clasp.engin.umich.edu/2023/08/16/clear-center-launched-at-u-m-climate-space-to-improve-space-weather-forecasting/",
+  },
+  {
+    date: "2023-08-10",
+    title: "$9.7M for tools to improve forecasts of harmful space weather",
+    source: "University of Michigan Space Institute",
+    summary: "NASA awards PI Lulu Zhao and the CLEAR Center a five-year, $9.7M grant to build a comprehensive SEP prediction framework.",
+    url: "https://space.umich.edu/9-7m-for-tools-to-improve-forecasts-of-harmful-space-weather/",
+  },
+  {
+    date: "2023-08-10",
+    title: "U-M gets $9.7M to help forecast harmful space weather",
+    source: "The University Record",
+    url: "https://record.umich.edu/articles/u-m-gets-9-7m-to-help-forecast-harmful-space-weather/",
+  },
+];
+
+const sorted = items.sort((a, b) => (a.date < b.date ? 1 : -1));
+
+const fmtDate = (iso: string) =>
+  new Date(iso).toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
+---
+
+<BaseLayout title="News — CLEAR Center" description="News and press coverage of the CLEAR Space Weather Center of Excellence.">
+  <Section
+    eyebrow="News"
+    title="In the news"
+    lede="Press coverage, announcements, and publications about the CLEAR Space Weather Center of Excellence. Each entry links to the original article."
+    narrow
+  >
+    <ul class="divide-y divide-slate-200">
+      {sorted.map((it) => (
+        <li class="py-6">
+          <p class="text-xs uppercase tracking-wider text-slate-500">{fmtDate(it.date)}</p>
+          <h3 class="mt-2 text-lg font-semibold leading-snug text-umblue-900 sm:text-xl">
+            <a
+              class="hover:text-umblue-700 hover:underline decoration-maize-500 decoration-2 underline-offset-4"
+              href={it.url}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {it.title}
+              <span aria-hidden="true"> ↗</span>
+            </a>
+          </h3>
+          <p class="mt-1 text-sm italic text-slate-600">{it.source}</p>
+          {it.summary && <p class="mt-2 text-sm text-slate-700">{it.summary}</p>}
+        </li>
+      ))}
+    </ul>
+  </Section>
+</BaseLayout>

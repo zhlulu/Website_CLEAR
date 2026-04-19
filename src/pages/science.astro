@@ -1,0 +1,277 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Section from "../components/Section.astro";
+
+const advances = [
+  {
+    title: "Why are SEP events so widespread?",
+    body: "Multi-point observations reveal that SEPs can spread over more than 200° of longitude — at times filling the inner heliosphere from a single eruption. Identifying the acceleration and transport mechanisms that drive these wide-spread events is one of the central open problems in heliophysics.",
+    scale: "> 200° longitudinal spread",
+    icon: "globe",
+  },
+  {
+    title: "What controls SEP intensity and energy spectra?",
+    body: "SEP intensities and spectral shapes vary by many orders of magnitude between events. Disentangling the roles of seed populations, shock geometry and efficiency, and magnetic connectivity is a prerequisite for forecasting flux and spectrum — not just event probability.",
+    scale: "Orders of magnitude in flux & spectrum",
+    icon: "spectrum",
+  },
+  {
+    title: "How do SEP events evolve in time?",
+    body: "Predicting the full onset–peak–decay profile requires coupling particle acceleration at CME-driven shocks with transport through a turbulent, structured heliosphere. The timing and duration of SEP events remain difficult to forecast with existing tools.",
+    scale: "Onset → peak → decay",
+    icon: "clock",
+  },
+];
+
+const fundamentals = [
+  "How solar eruptions accelerate particles from thermal to relativistic energies across the heliosphere.",
+  "How interplanetary turbulence, shocks, and magnetic connectivity shape SEP propagation.",
+  "How suprathermal seed populations modulate the severity of the radiation hazard.",
+];
+
+const components = [
+  {
+    code: "SWMF",
+    name: "Space Weather Modeling Framework",
+    body: "Seamlessly couples domain models from the solar corona to the low terrestrial atmosphere — sun-to-mud. The Geospace configuration runs in operations at NOAA/SWPC.",
+    tag: "Physics",
+  },
+  {
+    code: "AWSoM / AWSoM-R",
+    name: "Alfvén Wave Solar-atmosphere Model",
+    body: "Cutting-edge model for the time-dependent background corona and heliosphere through which particles propagate. AWSoM-R achieves faster-than-real-time performance.",
+    tag: "Physics",
+  },
+  {
+    code: "EEGGL",
+    name: "Eruptive Event Generator with Gibson-Low flux rope",
+    body: "First magnetically-driven solar-eruption model available for community use. Simulates CME evolution initialized with observed active-region magnetic fields.",
+    tag: "Physics",
+  },
+  {
+    code: "M-FLAMPA",
+    name: "Multiple Field Line Advection Model for Particle Acceleration",
+    body: "Calculates particle acceleration at shocks and propagation along a multitude of Lagrangian magnetic field lines.",
+    tag: "Physics",
+  },
+  {
+    code: "MITTENS",
+    name: "Particle acceleration and transport model",
+    body: "Complements M-FLAMPA in modeling SEP acceleration at CME-driven shocks and propagation through the heliosphere.",
+    tag: "Physics",
+  },
+  {
+    code: "SA-MHD",
+    name: "Stream-Aligned MHD",
+    body: 'Eliminates the "V-shaped" field lines that plague ordinary MHD near the heliospheric current sheet, giving correct magnetic connectivity for every SEP model.',
+    tag: "Physics",
+  },
+  {
+    code: "SEPSTER / SEPSTER2D",
+    name: "SEP prediction derived from STEReo observations",
+    body: "Empirical models relating peak proton intensity and spectra (10–130 MeV) to CME speed and direction relative to the spacecraft's magnetic footpoint.",
+    tag: "Empirical",
+  },
+  {
+    code: "REleASE",
+    name: "Relativistic Electron Alert System for Exploration",
+    body: "Uses promptly-arriving near-relativistic electrons at L1 as an early indicator of an energetic proton event — including backside events others cannot see.",
+    tag: "Empirical",
+  },
+  {
+    code: "SEPNET",
+    name: "Machine-learning SEP forecast pipeline",
+    body: "Conditional ML models trained on SDO/HMI, SOHO/MDI, GONG magnetograms, GOES flares and LASCO/SECCHI CME parameters — enabling pre-eruption probabilistic forecasts.",
+    tag: "ML",
+  },
+];
+
+const componentTagColor: Record<string, string> = {
+  Physics: "bg-maize-100 text-umblue-900",
+  Empirical: "bg-umblue-100 text-umblue-900",
+  ML: "bg-umblue-800 text-maize-300",
+};
+
+const datasetValue = [
+  {
+    title: "Event definitions & calibration",
+    body: "Community-standard event definitions and cross-mission calibration unify a scattered archive into a reproducible data foundation.",
+  },
+  {
+    title: "Intercomparison & evaluation",
+    body: "A transparent, metric-driven basis for intercomparing SEP forecast models across methods, research groups, and operational agencies.",
+  },
+  {
+    title: "ML-ready training data",
+    body: "Machine-learning-ready training and validation sets curated for SEP forecasting — spectra, time-intensity profiles, and event metadata.",
+  },
+];
+
+const missions = [
+  { name: "GOES", role: "Operational proton-flux and solar X-ray monitoring" },
+  { name: "SDO", role: "HMI magnetograms, AIA EUV imagery, and SDO/HMI SHARP active-region patches" },
+  { name: "SOHO", role: "Coronagraph, in-situ particles at L1, and SOHO/MDI SMARP active-region patches" },
+  { name: "STEREO", role: "Multi-point heliospheric imaging and proton-flux measurements" },
+  { name: "ACE", role: "In-situ solar-wind and particle measurements" },
+  { name: "Parker Solar Probe", role: "Closest-ever solar observations" },
+  { name: "Solar Orbiter", role: "Remote + in-situ from novel vantage points" },
+];
+
+---
+
+<BaseLayout title="Science — CLEAR Center" description="The open scientific questions and forecasting gaps that CLEAR addresses, and the benchmark SEP dataset that enables rigorous progress.">
+  <Section
+    eyebrow="The Science"
+    title="The scientific challenges of SEP forecasting"
+    lede="Solar energetic particle (SEP) events remain one of the least predictable components of space weather. CLEAR's science program targets the specific physical processes that make SEP prediction difficult — and the forecast products that operations still lack."
+  >
+    <div class="grid gap-6 md:grid-cols-3">
+      {advances.map((a, i) => (
+        <article class="group relative flex flex-col overflow-hidden rounded-xl border border-slate-200 bg-white p-7 shadow-sm transition hover:shadow-md">
+          <div class="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-maize-400 via-maize-500 to-maize-500"></div>
+
+          <!-- Header: number + themed icon -->
+          <div class="flex items-center justify-between">
+            <span class="font-mono text-xs font-semibold uppercase tracking-wider text-maize-600">
+              Q.{i + 1}
+            </span>
+            <span class="inline-flex h-10 w-10 items-center justify-center rounded-lg bg-maize-100 text-umblue-800">
+              {a.icon === "globe" && (
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.75" stroke="currentColor" class="h-5 w-5" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9 9 0 100-18 9 9 0 000 18zm0 0a8.963 8.963 0 005.636-1.993M12 21a8.963 8.963 0 01-5.636-1.993M21 12h-9m9 0a9.004 9.004 0 01-3 6.708M21 12a9.004 9.004 0 00-3-6.708M3 12h9m-9 0a9.004 9.004 0 003 6.708M3 12a9.004 9.004 0 013-6.708M12 3v18m0-18c-2.33 1.84-3.75 5.22-3.75 9s1.42 7.16 3.75 9m0-18c2.33 1.84 3.75 5.22 3.75 9s-1.42 7.16-3.75 9" />
+                </svg>
+              )}
+              {a.icon === "spectrum" && (
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.75" stroke="currentColor" class="h-5 w-5" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z" />
+                </svg>
+              )}
+              {a.icon === "clock" && (
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.75" stroke="currentColor" class="h-5 w-5" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              )}
+            </span>
+          </div>
+
+          <h3 class="mt-5 text-xl font-semibold leading-snug text-umblue-900">
+            {a.title}
+          </h3>
+          <p class="mt-3 grow text-sm leading-relaxed text-slate-600">{a.body}</p>
+
+          <div class="mt-5 inline-flex w-fit items-center gap-2 rounded-full bg-slate-100 px-3 py-1 text-xs font-medium text-umblue-900">
+            <span class="inline-block h-1.5 w-1.5 rounded-full bg-maize-500"></span>
+            {a.scale}
+          </div>
+        </article>
+      ))}
+    </div>
+  </Section>
+
+  <!-- Fundamental physics -->
+  <section class="bg-umblue-900 py-16 text-white sm:py-20">
+    <div class="container-wide grid gap-10 lg:grid-cols-12">
+      <div class="lg:col-span-5">
+        <p class="eyebrow text-maize-400">Fundamental physics</p>
+        <h2 class="mt-2 text-3xl font-bold sm:text-4xl">
+          Core questions in heliophysics
+        </h2>
+        <p class="mt-4 text-slate-300">
+          Each CLEAR tool is built to answer a specific physics question — and the
+          answers feed directly back into better prediction.
+        </p>
+      </div>
+      <ul class="space-y-4 lg:col-span-7">
+        {fundamentals.map((f) => (
+          <li class="flex gap-4 rounded-lg border-l-2 border-maize-500 bg-white/5 p-5 ring-1 ring-white/10 backdrop-blur">
+            <p class="text-slate-100">{f}</p>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <!-- Components of CLEAR -->
+  <Section
+    eyebrow="Architecture"
+    title="Components of CLEAR"
+    lede="The building blocks of the integrated framework — physics-based simulations, empirical models, and a machine-learning pipeline that share inputs and feed each other's forecasts."
+  >
+    <div class="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+      {components.map((c) => (
+        <article class="flex flex-col rounded-xl border border-slate-200 bg-white p-6">
+          <div class="flex items-center justify-between gap-3">
+            <h3 class="text-base font-mono font-semibold text-umblue-900">{c.code}</h3>
+            <span class={`shrink-0 rounded-full px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider ${componentTagColor[c.tag]}`}>{c.tag}</span>
+          </div>
+          <p class="mt-1 text-sm font-medium text-slate-500">{c.name}</p>
+          <p class="mt-3 text-sm leading-relaxed text-slate-600">{c.body}</p>
+        </article>
+      ))}
+    </div>
+  </Section>
+
+  <!-- Benchmark SEP Dataset and Validation Framework -->
+  <section class="bg-gradient-to-br from-umblue-900 via-umblue-800 to-umblue-700 py-16 text-white sm:py-20">
+    <div class="container-wide">
+      <div class="max-w-3xl">
+        <p class="eyebrow text-maize-400">Benchmarking &amp; Validation Framework</p>
+        <h2 class="mt-2 text-3xl font-bold sm:text-4xl">
+          A community standard for benchmarking SEP forecasts.
+        </h2>
+        <p class="mt-6 text-lg text-slate-200">
+          Spanning more than four decades of observations from GOES, SDO, SOHO,
+          STEREO, ACE, Parker Solar Probe, and Solar Orbiter, the CLEAR benchmark
+          establishes community-standard event definitions, cross-mission
+          calibration, and reproducible validation metrics — the foundation for
+          rigorous model development, transparent intercomparison, and a bridge
+          between scientific research and operational forecasting. The
+          operational benchmark is openly available through GitHub and NASA CCMC.
+        </p>
+
+        <div class="mt-6 flex flex-wrap gap-3">
+          <a
+            class="btn-maize"
+            href="https://github.com/ktindiana/fetchsep"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            GitHub · FetchSEP →
+          </a>
+          <a
+            class="btn-secondary"
+            href="https://ccmc.gsfc.nasa.gov/swxcoe/clear/clear_data"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            NASA CCMC · CLEAR data →
+          </a>
+        </div>
+      </div>
+
+      <ul class="mt-10 grid gap-4 md:grid-cols-3">
+        {datasetValue.map((d) => (
+          <li class="rounded-xl bg-white/5 p-6 ring-1 ring-white/10 backdrop-blur">
+            <h3 class="text-base font-semibold text-maize-300">{d.title}</h3>
+            <p class="mt-2 text-sm leading-relaxed text-slate-200">{d.body}</p>
+          </li>
+        ))}
+      </ul>
+
+      <div class="mt-12">
+        <p class="eyebrow text-maize-400">Missions contributing</p>
+        <p class="mt-2 max-w-3xl text-sm text-slate-300">
+          Continuous, overlapping records from six flagship missions — the basis for cross-instrument calibration and decades-long event coverage.
+        </p>
+        <ul class="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+          {missions.map((m) => (
+            <li class="rounded-lg bg-umblue-900/50 p-4 ring-1 ring-white/10">
+              <p class="font-semibold text-maize-300">{m.name}</p>
+              <p class="text-sm text-slate-300">{m.role}</p>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

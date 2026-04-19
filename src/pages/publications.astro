@@ -1,0 +1,324 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Section from "../components/Section.astro";
+
+type Pub = {
+  authors: string;
+  year: number;
+  title: string;
+  venue: string;
+  status?: string; // e.g. "in press", "submitted", "under review"
+  doi?: string;
+  arxiv?: string;
+  url?: string;
+};
+
+type PubYear = { year: number; label: string; items: Pub[] };
+
+const pubYears: PubYear[] = [
+  {
+    year: 2025,
+    label: "2025",
+    items: [
+      {
+        authors: "Bruno, A., Pesce-Rollins, M., Dalla, S., Omodei, N., Richardson, I. G., Ryan, J. M.",
+        year: 2025,
+        title: "The 2024 July 16 Solar Event: A Challenge to the Coronal Mass Ejection Origin of Long-Duration Gamma-Ray Flares",
+        venue: "Astronomy & Astrophysics, 704, A140",
+        doi: "10.1051/0004-6361/202556879",
+      },
+      {
+        authors: "Chen, X., Zhao, L., Giacalone, J., Sachdeva, N., Sokolov, I., Toth, G., Cohen, C., Lario, D., et al.",
+        year: 2025,
+        title: "Evidence of Time-Dependent Diffusive Shock Acceleration in the 2022 September 5 Solar Energetic Particle Event",
+        venue: "Astrophysical Journal, 994, 242",
+        doi: "10.3847/1538-4357/ae1227",
+      },
+      {
+        authors: "van der Holst, B., Antiochos, S. K., Sachdeva, N., Toth, G., Dahlin, J. T., Gombosi, T. I.",
+        year: 2025,
+        title: "Modeling the Energy Release in Solar Eruptive Events",
+        venue: "Astrophysical Journal, 995, 221",
+        doi: "10.3847/1538-4357/ae2479",
+      },
+      {
+        authors: "Farwa, G. U., Dresing, N., Gieseler, J., Vuorinen, L., Richardson, I. G., et al.",
+        year: 2025,
+        title: "Electron and Proton Peak Intensities as Observed by a Five-Spacecraft Fleet in Solar Cycle 25",
+        venue: "Astronomy & Astrophysics, 693, A198",
+        doi: "10.1051/0004-6361/202450945",
+      },
+      {
+        authors: "Lario, D., Hu, J., Balmaceda, L. A., Kwon, R. Y., Wallace, S., da Silva, D. E., Mays, M. L., et al.",
+        year: 2025,
+        title: "The Major Solar Energetic Particle Event on 2024 May 20: Multi-spacecraft Observations of a Long-lasting Energetic Particle Reservoir",
+        venue: "Astrophysical Journal",
+        status: "in press",
+      },
+      {
+        authors: "Liu, W., Sokolov, I. V., Zhao, L., Gombosi, T. I., Sachdeva, N., Chen, X., Toth, G., Lario, D., Manchester, W. B., Whitman, K., Cohen, C. M., Bruno, A., Mays, M. L., Bain, H. M.",
+        year: 2025,
+        title: "Physics-based Simulation of the 2013 April 11 Solar Energetic Particle Event",
+        venue: "Astrophysical Journal, 985(1), 82",
+        doi: "10.3847/1538-4357/adc4e3",
+      },
+      {
+        authors: "Liu, W., Zhao, L., Sokolov, I. V., Whitman, K., Gombosi, T. I., Sachdeva, N., Adamson, E. T., Bain, H. M., Corti, C., Mays, M. L., Romano, M., et al.",
+        year: 2025,
+        title: "Simulated Real-Time Testing of the Prototype Implementation of the SOFIE Model: The 2025 Space Weather Prediction Testbed Exercise",
+        venue: "Space Weather",
+        status: "submitted",
+        arxiv: "2511.09716",
+      },
+      {
+        authors: "Posner, A., Richardson, I. G., Zeitlin, C.",
+        year: 2025,
+        title: "Mars Ground Level Enhancements in the Context of the Solar Energetic Particle Clock",
+        venue: "Solar Physics, 300, 102",
+        doi: "10.1007/s11207-025-02482-4",
+      },
+      {
+        authors: "Richardson, I. G., von Rosenvinge, T. T., St. Cyr, O. C., Lario, D., Mitchell, J. G., Christian, E. R.",
+        year: 2025,
+        title: "Solar Energetic Proton Events Observed by the High Energy Telescopes on the STEREO Spacecraft or at the Earth During the First Solar Orbit of STEREO A (2006–2023)",
+        venue: "Solar Physics",
+        status: "in press",
+        arxiv: "2601.09630",
+      },
+      {
+        authors: "Sokolov, I. V., Gombosi, T. I.",
+        year: 2025,
+        title: "Physics-Based Forecasting of Tomorrow's Solar Wind at 1 AU",
+        venue: "Astrophysical Journal, 987, 83",
+        doi: "10.3847/1538-4357/add52f",
+      },
+      {
+        authors: "St. Cyr, O. C., Richardson, I. G., Burkepile, J. T., Galloy, M., Nieves-Chinchilla, T., Thompson, B. J.",
+        year: 2025,
+        title: "Mauna Loa Solar Observatory K-Cor Coronagraph Observations of Coronal Mass Ejections Associated with Solar Energetic Particles",
+        venue: "Solar Physics",
+        status: "submitted",
+      },
+      {
+        authors: "Koban, G., Szente, J., van der Holst, B., Toth, G., Landi, E.",
+        year: 2025,
+        title: "Validation of Long-term Solar Coronal Modeling Using FORWARD",
+        venue: "Astrophysical Journal, 280, 51",
+        doi: "10.3847/1538-4365/adf63f",
+      },
+      {
+        authors: "Liu, X., Liu, W., Manchester, W. B., Welling, D. T., Toth, G., Gombosi, T. I., DeRosa, M. L., Bertello, L., Pevtsov, Alexei A., Pevtsov, Alexander A., Reardon, K., Wilbanks, K., Rewoldt, A., Zhao, L.",
+        year: 2025,
+        title: "Forecasting the 8 April 2024 Total Solar Eclipse with Multiple Solar Photospheric Magnetograms",
+        venue: "Astrophysical Journal",
+        status: "in press",
+        arxiv: "2503.10974",
+      },
+      {
+        authors: "Vainio, R., Afanasiev, A., Gopalswamy, N., Jin, M., Makela, P., Ryan, J.",
+        year: 2025,
+        title: "Long Duration Gamma-Ray Flares: The Number Problem",
+        venue: "Solar Physics",
+        doi: "10.1007/s11207-025-02600-2",
+      },
+      {
+        authors: "Jin, M., Li, G., Nitta, N., Liu, W., Petrosian, V., Manchester, W. B., Cohen, C., Effenberger, F., Ding, Z., Pesce-Rollins, M., Omodei, N., Gopalswamy, N.",
+        year: 2025,
+        title: "Exploring the Dynamics of CME-Driven Shocks by Comparing Numerical Modeling and Observations",
+        venue: "Proceedings of IAU Symposium No. 388",
+        arxiv: "2409.18020",
+      },
+      {
+        authors: "Dorner, J., Effenberger, F., Fichtner, H., Becker Tjus, J., Jin, M., Liu, W., Petrosian, V.",
+        year: 2025,
+        title: "Proton acceleration and transport modeling",
+        venue: "Astrophysical Journal",
+        status: "in press",
+        arxiv: "2512.01403",
+      },
+      {
+        authors: "Cohen, C. M. S., Mason, G. M., Christian, E. R., Cummings, A. C., de Nolfo, G. A., Desai, M. I., et al.",
+        year: 2025,
+        title: "Longitudinal Dependence of Heavy Ion Composition in the 2021 October 28 Ground Level Enhancement Event",
+        venue: "Astrophysical Journal Letters, 978(2), L35",
+        doi: "10.3847/2041-8213/ada24b",
+      },
+      {
+        authors: "Muro, G. D., Cohen, C. M. S., Xu, Z., Leske, R. A., Christian, E. R., Cummings, A. C., et al.",
+        year: 2025,
+        title: "Radial Dependence of Ion Fluences in the 2023 July 17 Solar Energetic Particle Event from Parker Solar Probe to STEREO and ACE",
+        venue: "Astrophysical Journal, 981(1), 8",
+        doi: "10.3847/1538-4357/adadf7",
+      },
+    ],
+  },
+  {
+    year: 2024,
+    label: "2024",
+    items: [
+      {
+        authors: "Posner, A., Richardson, I. G., Strauss, R. D.-T.",
+        year: 2024,
+        title: "The 'SEP Clock': A Discussion of First Proton Arrival Times in Wide-Spread Solar Energetic Particle Events",
+        venue: "Solar Physics, 299, 126",
+        doi: "10.1007/s11207-024-02350-7",
+      },
+      {
+        authors: "Zhao, L., Sokolov, I., Gombosi, T., Lario, D., Whitman, K., Huang, Z., Toth, G., Manchester, W., van der Holst, B., Sachdeva, N., Liu, W.",
+        year: 2024,
+        title: "Solar Wind with Field Lines and Energetic Particles (SOFIE) Model: Application to Historical Solar Energetic Particle Events",
+        venue: "Space Weather, 22, e2023SW003729",
+        doi: "10.1029/2023SW003729",
+      },
+      {
+        authors: "Manchester, W., Sachdeva, N., Kilpua, E., et al.",
+        year: 2024,
+        title: "High-Resolution Simulation of CME–CIR Interactions: Small- to Mesoscale Solar Wind Structure Formation Observable by the SWIFT Constellation",
+        venue: "Nature Astronomy (preprint)",
+        status: "under review",
+        doi: "10.21203/rs.3.rs-5489820/v1",
+      },
+      {
+        authors: "Wraback, E., Landi, E., Manchester, W.",
+        year: 2024,
+        title: "Time-dependent Hinode/EIS Atlas of a Coronal Mass Ejection Containing Cool Material",
+        venue: "Astrophysical Journal, 970, 182",
+        doi: "10.3847/1538-4357/ad625f",
+      },
+      {
+        authors: "Wraback, E., Landi, E., Manchester, W.",
+        year: 2024,
+        title: "Using the Cartwheel CME to Predict Off-limb Observations of CMEs for New and Upcoming UV and EUV Spectrometers",
+        venue: "Astrophysical Journal, 974, 32",
+        doi: "10.3847/1538-4357/ad6d58",
+      },
+      {
+        authors: "Chen, Y., Manchester, W., Jin, M., et al.",
+        year: 2024,
+        title: "Solar Imaging Data Analytics: A Selective Overview of Challenges and Opportunities",
+        venue: "Statistics and Data Science in Imaging",
+        doi: "10.1080/01621459.2024.2391688",
+      },
+      {
+        authors: "Verma, V., Chen, Y., Stoev, S.",
+        year: 2024,
+        title: "On the Optimal Prediction of Extreme Events in Heavy-Tailed Time Series with Applications to Solar Flare Forecasting",
+        venue: "Journal of Time Series Analysis",
+        status: "under revision",
+        arxiv: "2407.11887",
+      },
+    ],
+  },
+  {
+    year: 2026,
+    label: "Upcoming",
+    items: [
+      {
+        authors: "Petrosian, V., Jin, M.",
+        year: 2026,
+        title: "Transport of High Energy Protons from CME-Shock to the Sun and its Connection to Extended Gamma-rays Observed by FERMI",
+        venue: "Astrophysical Journal",
+        status: "submitted",
+      },
+      {
+        authors: "Omelchenko, Y. A., Sokolov, I., Zhao, L.",
+        year: 2026,
+        title: "Unified Simulation Model for Diffusive Shock Acceleration of Solar Energetic Particles",
+        venue: "Astrophysical Journal",
+        status: "in preparation",
+      },
+    ],
+  },
+];
+
+function pubLink(p: Pub): string | undefined {
+  if (p.url) return p.url;
+  if (p.doi) return `https://doi.org/${p.doi}`;
+  if (p.arxiv) return `https://arxiv.org/abs/${p.arxiv}`;
+  return undefined;
+}
+
+const totalCount = pubYears.reduce((sum, y) => sum + y.items.length, 0);
+---
+
+<BaseLayout title="Publications — CLEAR Center" description="Peer-reviewed publications from the CLEAR Center for All-Clear SEP Forecast.">
+  <Section
+    eyebrow="Publications"
+    title="CLEAR Center publications"
+    lede={`Peer-reviewed papers and preprints produced by the CLEAR Center (${totalCount} entries). Updated as papers are accepted; click any entry to open its DOI or preprint.`}
+  >
+    <div class="space-y-16">
+      {pubYears.map((yr) => (
+        <section id={`y${yr.year}`}>
+          <div class="flex items-baseline gap-3 border-b border-slate-200 pb-3">
+            <h2 class="text-2xl font-bold text-umblue-900 sm:text-3xl">{yr.label}</h2>
+            <span class="text-sm text-slate-500">{yr.items.length} {yr.items.length === 1 ? "entry" : "entries"}</span>
+          </div>
+          <ol class="mt-6 space-y-5">
+            {yr.items.map((p, i) => {
+              const href = pubLink(p);
+              return (
+                <li class="flex gap-4 border-l-2 border-maize-500 pl-5">
+                  <span class="mt-0.5 shrink-0 font-mono text-sm font-semibold text-maize-600">{String(i + 1).padStart(2, "0")}</span>
+                  <div class="min-w-0 flex-1">
+                    <p class="text-sm text-slate-600">{p.authors} <span class="text-slate-500">({p.year})</span></p>
+                    <h3 class="mt-1 text-base font-semibold leading-snug text-umblue-900">
+                      {href ? (
+                        <a class="hover:text-umblue-700 hover:underline decoration-maize-500 underline-offset-4" href={href} target="_blank" rel="noopener noreferrer">
+                          {p.title}
+                        </a>
+                      ) : (
+                        p.title
+                      )}
+                    </h3>
+                    <p class="mt-1 text-sm italic text-slate-600">
+                      {p.venue}
+                      {p.status && <span class="not-italic"> — <span class="rounded bg-slate-100 px-1.5 py-0.5 text-xs font-medium uppercase tracking-wider text-slate-600">{p.status}</span></span>}
+                    </p>
+                    {href && (
+                      <a class="mt-1 inline-flex items-center gap-1 text-xs font-semibold text-umblue-800 hover:text-umblue-700" href={href} target="_blank" rel="noopener noreferrer">
+                        {p.doi ? `DOI: ${p.doi}` : p.arxiv ? `arXiv: ${p.arxiv}` : "Link"} →
+                      </a>
+                    )}
+                  </div>
+                </li>
+              );
+            })}
+          </ol>
+        </section>
+      ))}
+    </div>
+
+    <!-- Foundational references -->
+    <section class="mt-20 border-t border-slate-200 pt-12">
+      <h2 class="text-2xl font-bold text-umblue-900 sm:text-3xl">Foundational references</h2>
+      <p class="mt-2 max-w-3xl text-sm text-slate-600">
+        Earlier papers that the CLEAR framework builds on — the modeling substrate and empirical methods that the Center extends and integrates.
+      </p>
+      <ul class="mt-6 space-y-4 text-sm text-slate-700">
+        <li class="border-l-2 border-maize-500 pl-4">
+          Gombosi, T. I. et al. — <em>Space Weather Modeling Framework</em>. The modeling substrate that CLEAR builds on.
+        </li>
+        <li class="border-l-2 border-maize-500 pl-4">
+          Sokolov, I. V. et al. — <em>Alfvén Wave Solar-atmosphere Model (AWSoM / AWSoM-R)</em>. Real-time background solar wind.
+        </li>
+        <li class="border-l-2 border-maize-500 pl-4">
+          Borovikov, D. et al.; Jin, M. et al. — <em>EEGGL</em>. Magnetically-driven CME initiation.
+        </li>
+        <li class="border-l-2 border-maize-500 pl-4">
+          Richardson, I. G. et al. — <em>SEPSTER / SEPSTER2D</em>. Empirical SEP prediction from STEREO observations.
+        </li>
+        <li class="border-l-2 border-maize-500 pl-4">
+          Posner, A. — <em>REleASE</em>. Electron-onset precursor for proton events.
+        </li>
+        <li class="border-l-2 border-maize-500 pl-4">
+          Sokolov, I. V. et al. — <em>Stream-Aligned MHD</em>. Magnetic connectivity without spurious V-shaped field lines.
+        </li>
+      </ul>
+    </section>
+
+    <p class="mt-16 text-sm text-slate-500">
+      Missing a paper? <a class="font-semibold text-umblue-800 hover:text-umblue-700" href="/contact">Contact the center</a> and we'll add it.
+    </p>
+  </Section>
+</BaseLayout>

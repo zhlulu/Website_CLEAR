@@ -1,0 +1,58 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-white text-umblue-900 antialiased;
+  }
+  h1, h2, h3, h4 {
+    @apply font-display tracking-tight;
+  }
+  a {
+    @apply transition-colors;
+  }
+}
+
+@layer components {
+  .container-narrow {
+    @apply mx-auto max-w-5xl px-6;
+  }
+  .container-wide {
+    @apply mx-auto max-w-7xl px-6;
+  }
+  /* Primary button: UM Blue background, white text — classic UM CTA. */
+  .btn-primary {
+    @apply inline-flex items-center gap-2 rounded-md bg-umblue-800 px-5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-umblue-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-maize-500;
+  }
+  /* Maize accent button: UM Maize background, UM Blue text. Reserved for highlighted CTAs. */
+  .btn-maize {
+    @apply inline-flex items-center gap-2 rounded-md bg-maize-500 px-5 py-2.5 text-sm font-semibold text-umblue-900 shadow-sm hover:bg-maize-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-maize-500;
+  }
+  .btn-secondary {
+    @apply inline-flex items-center gap-2 rounded-md border border-white/30 px-5 py-2.5 text-sm font-semibold text-white hover:bg-white/10;
+  }
+  .eyebrow {
+    @apply text-xs font-semibold uppercase tracking-[0.18em] text-umblue-700;
+  }
+  .prose-clear :where(p) { @apply leading-relaxed text-slate-700; }
+}
+
+/* Starfield background used behind the hero — UM Blue base with Maize accent glow. */
+.starfield {
+  background-image:
+    radial-gradient(ellipse at top, rgba(255, 203, 5, 0.18), transparent 55%),
+    radial-gradient(ellipse at bottom right, rgba(0, 39, 76, 0.6), transparent 55%),
+    radial-gradient(1px 1px at 20% 30%, #ffffff 50%, transparent 100%),
+    radial-gradient(1px 1px at 70% 60%, #ffffff 50%, transparent 100%),
+    radial-gradient(1px 1px at 40% 80%, #ffffff 50%, transparent 100%),
+    radial-gradient(1px 1px at 85% 20%, #ffffff 50%, transparent 100%),
+    radial-gradient(1px 1px at 10% 75%, #ffffff 50%, transparent 100%),
+    radial-gradient(1px 1px at 55% 40%, #ffffff 50%, transparent 100%),
+    radial-gradient(1.2px 1.2px at 30% 55%, #ffffff 50%, transparent 100%),
+    radial-gradient(1.2px 1.2px at 90% 85%, #ffffff 50%, transparent 100%);
+  background-color: #001E3C; /* umblue-900 */
+}
