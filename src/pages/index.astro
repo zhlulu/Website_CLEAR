@@ -36,6 +36,8 @@ const impacts = [
   "Enables probabilistic all-clear forecasts to support planning for astronaut EVAs and launch windows.",
 ];
 
+const base = import.meta.env.BASE_URL;
+const u = (p: string) => `${base}${p.replace(/^\//, "")}`;
 ---
 
 <BaseLayout>
@@ -56,7 +58,7 @@ const impacts = [
 
     {/* Option 3 — Operational / cinematic: darker neutral slate, Sun shows through more */}
     <img
-      src="/corona-mass.jpg"
+      src={u("corona-mass.jpg")}
       alt=""
       class="absolute inset-0 h-full w-full object-cover opacity-70"
       loading="eager"
@@ -82,8 +84,8 @@ const impacts = [
       </p>
 
       <div class="mt-8 flex flex-wrap gap-3">
-        <a class="btn-maize" href="/tools">See the forecasts</a>
-        <a class="btn-secondary" href="/science">Explore the science</a>
+        <a class="btn-maize" href={u("tools")}>See the forecasts</a>
+        <a class="btn-secondary" href={u("science")}>Explore the science</a>
       </div>
       <p class="mt-8 text-sm text-slate-300">
         Learn more on the NASA space weather program website:
@@ -254,8 +256,8 @@ const impacts = [
       includes workshops, seminars, and public communication.
     </p>
     <div class="mt-8 flex flex-wrap gap-3">
-      <a class="btn-primary" href="/team">Meet the team</a>
-      <a class="btn-primary" href="/contact">Contact the center</a>
+      <a class="btn-primary" href={u("team")}>Meet the team</a>
+      <a class="btn-primary" href={u("contact")}>Contact the center</a>
     </div>
   </Section>
 </BaseLayout>

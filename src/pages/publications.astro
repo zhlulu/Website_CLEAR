@@ -318,7 +318,7 @@ const totalCount = pubYears.reduce((sum, y) => sum + y.items.length, 0);
     </section>
 
     <p class="mt-16 text-sm text-slate-500">
-      Missing a paper? <a class="font-semibold text-umblue-800 hover:text-umblue-700" href="/contact">Contact the center</a> and we'll add it.
+      Missing a paper? <a class="font-semibold text-umblue-800 hover:text-umblue-700" href={`${import.meta.env.BASE_URL}contact`}>Contact the center</a> and we'll add it.
     </p>
   </Section>
 </BaseLayout>
