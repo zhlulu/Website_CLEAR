@@ -291,11 +291,22 @@ const u = (p: string) => `${base}${p.replace(/^\//, "")}`;
   <section class="bg-white py-12 sm:py-16 border-t border-slate-200">
     <div class="container-wide">
       <p class="eyebrow text-center">Partner Institutions</p>
-      <div class="mt-8 flex flex-wrap items-center justify-center gap-x-12 gap-y-8 sm:gap-x-20">
-        <img src={u("logos/umich.svg")} alt="University of Michigan" class="h-14 w-auto opacity-80 transition hover:opacity-100" loading="lazy" />
-        <img src={u("logos/uah.svg")} alt="University of Alabama in Huntsville" class="h-14 w-auto opacity-80 transition hover:opacity-100" loading="lazy" />
-        <img src={u("logos/caltech.svg")} alt="Caltech" class="h-14 w-auto opacity-80 transition hover:opacity-100" loading="lazy" />
-        <img src={u("logos/nasa-goddard.svg")} alt="NASA Goddard Space Flight Center" class="h-14 w-auto opacity-80 transition hover:opacity-100" loading="lazy" />
+      <div class="mt-10 grid grid-cols-2 items-center gap-y-10 sm:grid-cols-3 lg:grid-cols-5">
+        {[
+          { name: "University of Michigan", src: "logos/umich.svg" },
+          { name: "University of Alabama in Huntsville", src: "logos/uah.svg" },
+          { name: "University of Maryland", src: "logos/umd.svg" },
+          { name: "University of Arizona", src: "logos/uarizona.svg" },
+          { name: "Caltech", src: "logos/caltech.svg" },
+          { name: "Catholic University of America", src: "logos/cua.svg" },
+          { name: "Space Science Institute", src: "logos/ssi.png" },
+          { name: "NASA Goddard Space Flight Center", src: "logos/nasa-goddard.svg" },
+          { name: "Lockheed Martin", src: "logos/lockheed-martin.svg" },
+        ].map((p) => (
+          <div class="flex h-24 items-center justify-center px-4">
+            <img src={u(p.src)} alt={p.name} class="max-h-20 max-w-full opacity-80 transition hover:opacity-100" loading="lazy" />
+          </div>
+        ))}
       </div>
     </div>
   </section>
