@@ -286,4 +286,17 @@ const u = (p: string) => `${base}${p.replace(/^\//, "")}`;
       <a class="btn-primary" href={u("contact")}>Contact the center</a>
     </div>
   </Section>
+
+  <!-- Partner Institutions -->
+  <section class="bg-white py-12 sm:py-16 border-t border-slate-200">
+    <div class="container-wide">
+      <p class="eyebrow text-center">Partner Institutions</p>
+      <div class="mt-8 flex flex-wrap items-center justify-center gap-x-12 gap-y-8 sm:gap-x-20">
+        <img src={u("logos/umich.svg")} alt="University of Michigan" class="h-14 w-auto opacity-80 transition hover:opacity-100" loading="lazy" />
+        <img src={u("logos/uah.svg")} alt="University of Alabama in Huntsville" class="h-14 w-auto opacity-80 transition hover:opacity-100" loading="lazy" />
+        <img src={u("logos/caltech.svg")} alt="Caltech" class="h-14 w-auto opacity-80 transition hover:opacity-100" loading="lazy" />
+        <img src={u("logos/nasa-goddard.svg")} alt="NASA Goddard Space Flight Center" class="h-14 w-auto opacity-80 transition hover:opacity-100" loading="lazy" />
+      </div>
+    </div>
+  </section>
 </BaseLayout>
