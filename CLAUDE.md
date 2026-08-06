@@ -23,7 +23,9 @@ Astro 4 + Tailwind 3, fully static output.
 
 - **`src/layouts/BaseLayout.astro`** — the single site shell (head, `<Header>`, `<Footer>`, skip link). Every page renders inside it; don't duplicate head/nav markup elsewhere.
 - **`src/components/Section.astro`** — standard section wrapper with an optional `eyebrow` / `title` / `lede` header block. Use it for new content sections to keep spacing and typography consistent across pages.
-- **`src/content/news/`** + **`src/content/config.ts`** — news posts are a typed Astro content collection. Adding a post is *just* dropping a Markdown file with the frontmatter schema (`title`, `date`, `summary`, optional `author`/`tags`); no component edits needed. `src/pages/news/[...slug].astro` renders the detail page automatically.
+- **`src/pages/news/index.astro`** — "In the news" is an inline `items` array of external article links (`title`, `date`, `source`, `url`, `summary`), sorted by date at render time. Adding coverage = adding an array entry; some entries are kept commented out until cleared for publication.
+- **`src/pages/sofie.astro`** — per-tool detail page. Tool cards in `src/pages/tools.astro` can point to one via their `learnMore` field; use SOFIE as the template when adding detail pages for other tools (SEPNET, AWSoM, …).
+- **`_import/`** — static HTML snapshots of the old CLEAR site (home/science/team/tools). Reference material only; not part of the build.
 - **`tailwind.config.mjs`** — University of Michigan brand palette: `maize` (official UM Maize #FFCB05, Pantone 7406) and `umblue` (official UM Blue #00274C, Pantone 282), each as a 50–900 scale. Stick to these tokens rather than raw Tailwind colors (`yellow-*`, `blue-*`) so the palette can be retuned centrally.
 - **`src/styles/global.css`** — defines reusable classes (`container-narrow`, `container-wide`, `btn-primary`, `btn-maize`, `btn-secondary`, `eyebrow`, `.starfield`). Prefer these over re-declaring the same utility strings on every page.
 
@@ -36,9 +38,9 @@ Astro 4 + Tailwind 3, fully static output.
 ## Content conventions
 
 - The proposal PDF that seeded this site lives at `/Users/zhlulu/University of Michigan Dropbox/Lulu Zhao/03_PROPOSALS/funded/2022/Zhao_SWxC/CLEAR_proposal.pdf`. Treat it as the source of truth for scientific claims — don't invent figures (award amount, forecast horizon, institution list, module names).
-- Team data is an inline array in `src/pages/team.astro`. If it grows or changes often, move it to a JSON/TS data file under `src/data/` — don't scatter duplicates across pages.
-- The `clear.png` logo in `public/` is the official center logo (copied from the proposal folder). The SVG favicon is a stylized stand-in.
+- Team data lives in inline arrays in `src/pages/team.astro` (`executive`, `advisoryBoard`, `operationalGroups`, `memberGroups`); headshots are under `public/team/`. If it grows or changes often, move it to a JSON/TS data file under `src/data/` — don't scatter duplicates across pages.
+- The `clear.png` logo in `public/` is the official center logo (copied from the proposal folder). The favicon is `clear-square.png` (square version of the logo); `favicon.svg` is a leftover stylized sun no longer referenced.
 
 ## Deployment
 
-Target: **GitHub Pages** (or Netlify). `astro.config.mjs` currently sets `site: "https://clear.engin.umich.edu"` as a placeholder — update it when the real URL is known, then configure DNS + GitHub Pages custom-domain accordingly.
+Live at **https://clear.engin.umich.edu** — GitHub Pages behind a UM-managed CNAME (`clear.engin.umich.edu` → `zhlulu.github.io`). Every push to `main` auto-builds and deploys via `.github/workflows/deploy.yml` (withastro/action), so **pushing to `main` publishes the site** — only push when the user asks. The custom domain requires `public/CNAME` and the `site` value in `astro.config.mjs`; that file's comment shows how to revert to the plain GitHub Pages URL (restore `base: "/Website_CLEAR/"`). Pages still build links with `import.meta.env.BASE_URL` so a base path would keep working.
