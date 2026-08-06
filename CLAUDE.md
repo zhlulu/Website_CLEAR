@@ -39,7 +39,7 @@ Astro 4 + Tailwind 3, fully static output.
 
 - The proposal PDF that seeded this site lives at `/Users/zhlulu/University of Michigan Dropbox/Lulu Zhao/03_PROPOSALS/funded/2022/Zhao_SWxC/CLEAR_proposal.pdf`. Treat it as the source of truth for scientific claims — don't invent figures (award amount, forecast horizon, institution list, module names).
 - Team data lives in inline arrays in `src/pages/team.astro` (`executive`, `advisoryBoard`, `operationalGroups`, `memberGroups`); headshots are under `public/team/`. If it grows or changes often, move it to a JSON/TS data file under `src/data/` — don't scatter duplicates across pages.
-- The `clear.png` logo in `public/` is the official center logo (copied from the proposal folder). The favicon is `favicon.png` — the square logo composited onto a white rounded square (the raw logo is transparent and its blue text vanishes on dark tab bars); `favicon.svg` is a leftover stylized sun no longer referenced.
+- The `clear.png` logo in `public/` is the official center logo (copied from the proposal folder). The favicon is `favicon.png` — just the orange mark from the logo on a transparent background (the full logo's blue "CLEAR" text is illegible at 16px and vanishes on dark tab bars); `favicon.svg` is a leftover stylized sun no longer referenced.
 
 ## Deployment
 
